@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrooveVortex - Hudobná Mágia</title>
+    <!-- Webová Ikona (Favicon) - SVG -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><style>@keyframes spin{to{transform:rotate(360deg)}}.c{fill:none;stroke:%237c3aed;stroke-width:10;animation:spin 3s linear infinite}</style><circle cx='50' cy='50' r='40' class='c'/><circle cx='50' cy='50' r='20' fill='%2314b8a6'/></svg>" type="image/svg+xml">
+    <!-- Načítanie Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Nastavenie fontu Inter -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..999&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0a1b; /* Hlboká tmavá fialová/čierna */
+            color: #e5e7eb; /* Svetlo šedá pre text */
+        }
+        /* Custom CSS pre efekt Vortex pulzu */
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.33);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        .vortex-pulse {
+            position: relative;
+        }
+        .vortex-pulse::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 2px solid #a855f7; /* Fialová farba pulzu */
+            border-radius: 9999px;
+            animation: pulse-ring 2.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+            z-index: -1;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-vortex': '#7c3aed', // Intenzívna fialová
+                        'secondary-groove': '#14b8a6', // Azúrová/Tyrkysová
+                        'dark-bg': '#0d0a1b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen">
+
+    <!-- Navigácia -->
+    <header class="bg-dark-bg/80 backdrop-blur-sm shadow-lg sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-vortex to-secondary-groove">
+                GrooveVortex
+            </h1>
+            <nav class="space-x-4 hidden md:flex">
+                <a href="#uvod" class="text-sm font-medium hover:text-secondary-groove transition duration-300">Úvod</a>
+                <a href="#vizie" class="text-sm font-medium hover:text-secondary-groove transition duration-300">Vízie</a>
+                <a href="#zaklinadlo" class="text-sm font-medium hover:text-secondary-groove transition duration-300">Silent Bassmas</a>
+                <a href="#ponuka" class="text-sm font-medium hover:text-secondary-groove transition duration-300">Ponuka</a>
+                <a href="#kontakt" class="text-sm font-medium hover:text-secondary-groove transition duration-300">Kontakt</a>
+            </nav>
+            <button class="md:hidden text-primary-vortex focus:outline-none">
+                <!-- Ikonka menu (SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto">
+        <!-- Sekcia: Hrdina (Hero) -->
+        <section id="uvod" class="py-20 md:py-32 text-center relative overflow-hidden">
+            <!-- Vizuálny efekt vortexu/kruhu v pozadí (čistý CSS gradient) -->
+            <div class="absolute inset-0 z-0 opacity-20" style="background: radial-gradient(circle at center, #7c3aed33 0%, #0d0a1b00 50%);"></div>
+
+            <div class="relative z-10 px-4">
+                <p class="text-secondary-groove uppercase tracking-widest text-lg font-semibold mb-3">KDE ZAČÍNA ZVUK</p>
+                <h2 class="text-6xl md:text-8xl font-black mb-8 leading-tight">
+                    Hudobná <span class="text-primary-vortex">Mágia</span>
+                </h2>
+                <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-300">
+                    Vstúpte do GrooveVortexu, dimenzie, kde každý rytmus je zaklínadlo a každá nota je portál. Objavte silu hudby, ktorá transformuje realitu.
+                </p>
+
+                <!-- Magické tlačidlo s pulzujúcim efektom -->
+                <button id="magicButton" class="vortex-pulse px-8 py-3 bg-primary-vortex text-white font-bold rounded-full shadow-xl hover:bg-primary-vortex/80 transition transform hover:scale-105 duration-300 active:scale-95">
+                    Aktivovať Magickú Frekvenciu
+                </button>
+                <p id="statusMessage" class="mt-4 text-sm text-gray-400 h-5"></p>
+            </div>
+        </section>
+
+        <!-- Sekcia: Vízie (Vision) -->
+        <section id="vizie" class="py-16 md:py-24 px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <h3 class="text-4xl md:text-5xl font-extrabold mb-4 text-primary-vortex">Naša Vízia</h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        Sme mostom medzi starodávnym umením melódie a futuristickým dizajnom. Našou víziou nie je len produkovať zvuk, ale vytvárať plne pohlcujúce audio-vizuálne zážitky, ktoré prekračujú hranice vnímaného sveta.
+                    </p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center text-secondary-groove"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Prepojenie zvuku a svetla</li>
+                        <li class="flex items-center text-secondary-groove"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Nekonečná transformácia zážitkov</li>
+                        <li class="flex items-center text-secondary-groove"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Globálna rezonancia duší</li>
+                    </ul>
+                </div>
+                <div class="order-1 md:order-2 flex justify-center">
+                    <!-- Placeholder obrazok/ikona -->
+                    <div class="bg-gray-800 rounded-2xl p-8 shadow-2xl transition transform hover:rotate-3 duration-500 w-full max-w-md aspect-square flex items-center justify-center border-4 border-secondary-groove/50">
+                        <p class="text-2xl font-bold text-gray-400 text-center"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcia: Magické Zaklínadlo (Lyrics) -->
+        <section id="zaklinadlo" class="py-16 md:py-24 px-4 bg-dark-bg">
+            <h3 class="text-4xl font-extrabold text-center mb-12 text-primary-vortex">Skladba: Silent Bassmas</h3>
+            <div class="max-w-4xl mx-auto p-6 bg-[#1a1530] rounded-xl shadow-2xl border border-secondary-groove/20">
+                <p class="text-lg text-gray-300 whitespace-pre-wrap leading-relaxed">
+[Intro]
+Silent night, but not for long. A shiver of frost, a distant hum.
+Flickering lights, a digital chime, then a low, resonant thrum.
+The world holds its breath, just for a moment, before the joy can bloom.
+
+[Verse 1]
+Early morning whispers, a crisp, December air,
+Excitement in the shadows, a magic everywhere.
+Presents wrapped in paper, a twinkle in each eye,
+Anticipation building, beneath the winter sky.
+The scent of pine and cinnamon, a warmth within the home,
+No place I'd rather be now, no need to ever roam.
+
+[Build-up]
+Feel the rhythm rising, a pulse beneath the floor,
+That silent, happy feeling, demanding something more.
+The bass begins to vibrate, a tremor in the glass,
+Getting ready for the moment, this joy is built to last.
+Heartbeat starts to quicken, a smile begins to spread,
+The energy is climbing, inside my very head.
+
+[Drop]
+BASS DROP! Oh, the rumble! Feel it deep inside!
+Christmas spirit shaking, with nowhere left to hide!
+The kick drum hits like thunder, a pulse-pounding, vibrant sound!
+Let the good times roll, baby, on this hallowed, joyous ground!
+Wobble and we shimmer, to the bass-boosted beat,
+This happiness is massive, can’t be beat! So sweet!
+
+[Verse 2]
+Friends and family gathered, a chorus of delight,
+Laughter fills the living room, burning ever so bright.
+Sharing stories, making memories, as the speakers boom,
+Every single moment, chasing out all gloom.
+Giving and receiving, with hearts so open wide,
+This is where the magic lives, with nowhere left to hide.
+
+[Bridge]
+Beyond the glitz and glamour, the presents and the sound,
+A simple, pure connection, in the joy that we have found.
+A quiet, thankful moment, a breath within the fray,
+This feeling will linger, beyond this very day.
+It's more than just the music, it's the love that fills the air,
+A hopeful, bright enchantment, beyond all worldly care.
+
+[Final Build]
+But the energy is calling, that rhythm starts to climb!
+The bass is gaining power, a timeless, pulsing chime!
+Hands are in the air now, a unified delight,
+Getting ready for the crescendo, burning ever so bright!
+Feel the current flowing, electric and so deep,
+The promise of pure happiness, a promise we will keep!
+
+[Final Drop]
+FINAL BASS DROP! YEAH! Let the speakers blow!
+This is Christmas happiness, a vibrant, powerful glow!
+Feel the ground beneath you, tremble and embrace,
+The ultimate euphoria, in this magical, joyful place!
+Merry Christmas, everyone! Feel the bass, feel the beat!
+(Deep, resonant bass hum fades into a final, powerful thud and sparkle)
+                </p>
+            </div>
+        </section>
+
+        <!-- Sekcia: Ponuka (Offer/Features) -->
+        <section id="ponuka" class="py-16 md:py-24 px-4 bg-[#1a1530] rounded-t-3xl">
+            <h3 class="text-4xl font-extrabold text-center mb-12 text-secondary-groove">Naše Služby</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Karta 1 -->
+                <div class="bg-dark-bg p-6 rounded-xl shadow-2xl border-t-4 border-primary-vortex transition transform hover:-translate-y-1 hover:shadow-primary-vortex/30 duration-300">
+                    <div class="text-3xl text-primary-vortex mb-4">🎵</div>
+                    <h4 class="text-2xl font-bold mb-3">Rytmické Zaklínadlá</h4>
+                    <p class="text-gray-400">Tvorba unikátnych zvukových stôp na mieru pre vaše projekty, ktoré nesú emocionálnu váhu a mystickú rezonanciu. Váš zvukový podpis.</p>
+                </div>
+
+                <!-- Karta 2 -->
+                <div class="bg-dark-bg p-6 rounded-xl shadow-2xl border-t-4 border-secondary-groove transition transform hover:-translate-y-1 hover:shadow-secondary-groove/30 duration-300">
+                    <div class="text-3xl text-secondary-groove mb-4">👁️</div>
+                    <h4 class="text-2xl font-bold mb-3">Vortex Vizualizácie</h4>
+                    <p class="text-gray-400">Dynamické vizuálne efekty a generatívne umenie, ktoré reagujú na každú notu v reálnom čase. Viditeľné vibrácie zvuku.</p>
+                </div>
+
+                <!-- Karta 3 -->
+                <div class="bg-dark-bg p-6 rounded-xl shadow-2xl border-t-4 border-primary-vortex transition transform hover:-translate-y-1 hover:shadow-primary-vortex/30 duration-300">
+                    <div class="text-3xl text-primary-vortex mb-4">✨</div>
+                    <h4 class="text-2xl font-bold mb-3">Magické Eventy</h4>
+                    <p class="text-gray-400">Organizovanie a produkcia eventov, ktoré sú kompletným zmyslovým zážitkom. Od klubov po virtuálne svety.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcia: Kontakt (Simple CTA) -->
+        <section id="kontakt" class="py-20 px-4 text-center">
+            <h3 class="text-4xl font-extrabold mb-4">Ste Pripravení Vstúpiť do Víru?</h3>
+            <p class="text-lg text-gray-400 mb-8 max-w-xl mx-auto">
+                Nechajte svoje projekty rezonovať na novej úrovni. Kontaktujte nás a prediskutujte svoju magickú audio-víziu.
+            </p>
+            <a href="mailto:kontakt@groovevortex.sk" class="inline-block px-8 py-3 bg-secondary-groove text-dark-bg font-bold rounded-full shadow-lg hover:bg-secondary-groove/80 transition transform hover:scale-105 duration-300">
+                Pošlite Nám Správu
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Pätička -->
+    <footer class="bg-dark-bg/80 py-8 mt-12 border-t border-primary-vortex/30">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
+            <p>&copy; 2025 GrooveVortex. Všetky práva vyhradené. | Navrhnuté s <span class="text-red-500">❤️</span> a magickou frekvenciou.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript pre interaktivitu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const magicButton = document.getElementById('magicButton');
+            const statusMessage = document.getElementById('statusMessage');
+
+            magicButton.addEventListener('click', () => {
+                // Zmena stavu tlačidla a zobrazenie správy
+                magicButton.disabled = true;
+                magicButton.textContent = 'Frekvencia Stabilizovaná...';
+                statusMessage.textContent = 'Počujete tie nepočuteľné tóny?';
+
+                // Simulačný timer pre efekt
+                setTimeout(() => {
+                    magicButton.disabled = false;
+                    magicButton.textContent = 'Aktivovať Magickú Frekvenciu';
+                    statusMessage.textContent = 'Energia víru čaká na Váš dotyk.';
+                }, 2000);
+
+                // Krátky vizuálny efekt (zmena farby)
+                magicButton.classList.add('bg-secondary-groove');
+                magicButton.classList.remove('bg-primary-vortex');
+                
+                setTimeout(() => {
+                    magicButton.classList.remove('bg-secondary-groove');
+                    magicButton.classList.add('bg-primary-vortex');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
